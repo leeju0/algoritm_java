@@ -18,7 +18,7 @@ public class tempature {
         return -x*x + 38*x + 80;
     }
 
-    public static int annealing(int n, float a, float t0){
+    public static int annealing(int n, float t0){
         Random r = new Random();
         float t = t0;
         int x = r.nextInt(32);//[0, 31] x=후보해 r.nextInt(32)= 초기해
@@ -32,14 +32,14 @@ public class tempature {
                 int d = curr - prev;
 
                 float q = r.nextFloat();
-                if(q <= Math.exp((float)+d/t)){
+                if(q <= Math.exp((float)d/t)){
                     x = tmp;
                     prev = curr;
                     }
                 }
             }
 
-            t *= a;
+
 
         return x;
     }
@@ -50,7 +50,7 @@ public class tempature {
         Random r = new Random();
         int idx = r.nextInt(str.length());
 
-        StringBuilder sb = new StringBuilder(str);
+
         char[] tmp = str.toCharArray();
         tmp[idx] = (tmp[idx] == '0')? '1' :'0';
         String y = new String(tmp);
@@ -59,9 +59,9 @@ public class tempature {
     }
 
     public static void main(String[] args) {
-         int x = annealing(1000, 0.9f, 100);
+         int x = annealing(1000, 100);
          System.out.println(x); //expected: 19
          System.out.println(fit(x)); //expected: 441
-
+//
     }
 }
